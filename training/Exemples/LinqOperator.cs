@@ -61,9 +61,7 @@ namespace training.Exemples
             //User user = ListUser().First(x => x.Age == 1);
 
             var sel = ListUseAnimal().OrderBy(x => x.Age).Take(2);
-            sel.ToList().ForEach(x => { Console.WriteLine(x.Age); });
-
-            var list = ListUseAnimal().ChangeAge(x => x.Name);
+            sel.ToList().ForEach(x => { Console.WriteLine(x.Age); });            
         }
 
        
