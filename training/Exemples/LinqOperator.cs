@@ -11,17 +11,20 @@ namespace training.Exemples
     {
         public static void GroupByOperator()
         {
-            List<User> users = ListUseAnimal();
-            var usersGroupedByCountry = users.GroupBy(user => user.HomeCountry);
-
-            foreach (var group in usersGroupedByCountry)
+           
+            var sel = ListUseAnimal().AsQueryable();
+            
+            var osel=sel.OrderByTest("Age");
+            foreach (var item in osel)
             {
-                Console.WriteLine("Users from " + group.Key + ":");
-                double age = group.Average(x => x.Age);
-                Console.WriteLine("Average from " + group.Key + ":" + age);
-                foreach (var user in group)
-                    Console.WriteLine("* " + user.Name);
+                Console.WriteLine(item.Age);
             }
+        }
+
+        public static Func<User, bool> UpdateName(User user)
+        {
+            user.Name = String.Join(" ", "coucou : ", user.Name);
+            return x => x.Age == 19;
         }
 
         public static void ProjectionOperator()
@@ -61,10 +64,10 @@ namespace training.Exemples
             //User user = ListUser().First(x => x.Age == 1);
 
             var sel = ListUseAnimal().OrderBy(x => x.Age).Take(2);
-            sel.ToList().ForEach(x => { Console.WriteLine(x.Age); });            
+            sel.ToList().ForEach(x => { Console.WriteLine(x.Age); });
         }
 
-       
+
 
 
 
@@ -75,11 +78,11 @@ namespace training.Exemples
         {
         new User { Name = "John Doe", Age = 42, HomeCountry = "USA",
             Animals=new List<Animal>(){new Animal(){Name="ChriChri", Species="cat"},new Animal(){Name="Kev", Species="fish"  } } },
-        new User { Name = "Jane Doe", Age = 38, HomeCountry = "USA" ,
+        new User { Name = "Jane Doe", Age = 19, HomeCountry = "USA" ,
         Animals=new List<Animal>(){new Animal(){Name="Beber", Species="dog"},new Animal(){Name="Phil", Species="snake"  } } },
         new User { Name = "Joe Doe", Age = 19, HomeCountry = "Germany" ,
         Animals=new List<Animal>(){new Animal(){Name="toto", Species="bird"} } },
-        new User { Name = "Jenna Doe", Age = 19, HomeCountry = "Germany" ,
+        new User { Name = "Jenna Doe", Age = 25, HomeCountry = "Germany" ,
         Animals=new List<Animal>(){new Animal(){Name="Mimi", Species="spider"},new Animal(){Name="Mitch", Species="chicken"  } } },
         new User { Name = "James Doe", Age = 8, HomeCountry = "USA" ,
         Animals=new List<Animal>()},

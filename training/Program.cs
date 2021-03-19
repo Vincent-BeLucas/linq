@@ -15,10 +15,10 @@ namespace training
 
             //SyntaxePerf.Run();
 
-            //LinqOperator.GroupByOperator();
+            LinqOperator.GroupByOperator();
             //LinqOperator.ProjectionOperator();
             //LinqOperator.ConversionOperator();
-            LinqOperator.ElementOperator();
+            //LinqOperator.ElementOperator();
 
         }
     }
